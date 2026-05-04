@@ -16,20 +16,20 @@ const INIT_SERVICES = [
 ];
 
 const INIT_BOOKINGS = [
-  { id:1, client:'María López',    service:'Corte de cabello', date:'2025-05-01', time:'09:00', stylist:'Ana',   status:'confirmed', phone:'310-111-2222', email:'maria@email.com',     notes:'Cliente frecuente' },
-  { id:2, client:'Sofía García',   service:'Tinte completo',   date:'2025-05-01', time:'10:00', stylist:'Luisa', status:'confirmed', phone:'310-333-4444', email:'sofia@email.com',     notes:'Color rubio platino' },
-  { id:3, client:'Patricia Ruiz',  service:'Manicure',         date:'2025-05-01', time:'12:00', stylist:'Ana',   status:'pending',   phone:'310-555-6666', email:'patricia@email.com',  notes:'' },
-  { id:4, client:'Carmen Torres',  service:'Pedicure',         date:'2025-05-01', time:'14:00', stylist:'Luisa', status:'pending',   phone:'310-777-8888', email:'carmen@email.com',    notes:'Diseño francés' },
-  { id:5, client:'Valentina Cruz', service:'Cejas y pestañas', date:'2025-05-02', time:'09:30', stylist:'Ana',   status:'confirmed', phone:'310-999-0000', email:'valentina@email.com', notes:'' },
-  { id:6, client:'Isabella Mora',  service:'Corte de cabello', date:'2025-05-02', time:'11:00', stylist:'Luisa', status:'cancelled', phone:'310-121-2121', email:'isabella@email.com',  notes:'Canceló por enfermedad' },
+  { id:1, client:'María López',    service:'Corte de cabello', date:'2026-05-04', time:'09:00', stylist:'Ana',   status:'confirmed', phone:'310-111-2222', email:'maria@email.com',     notes:'Cliente frecuente' },
+  { id:2, client:'Sofía García',   service:'Tinte completo',   date:'2026-05-04', time:'10:00', stylist:'Luisa', status:'confirmed', phone:'310-333-4444', email:'sofia@email.com',     notes:'Color rubio platino' },
+  { id:3, client:'Patricia Ruiz',  service:'Manicure',         date:'2026-05-04', time:'12:00', stylist:'Ana',   status:'pending',   phone:'310-555-6666', email:'patricia@email.com',  notes:'' },
+  { id:4, client:'Carmen Torres',  service:'Pedicure',         date:'2026-05-04', time:'14:00', stylist:'Luisa', status:'pending',   phone:'310-777-8888', email:'carmen@email.com',    notes:'Diseño francés' },
+  { id:5, client:'Valentina Cruz', service:'Cejas y pestañas', date:'2026-05-05', time:'09:30', stylist:'Ana',   status:'confirmed', phone:'310-999-0000', email:'valentina@email.com', notes:'' },
+  { id:6, client:'Isabella Mora',  service:'Corte de cabello', date:'2026-05-05', time:'11:00', stylist:'Luisa', status:'cancelled', phone:'310-121-2121', email:'isabella@email.com',  notes:'Canceló por enfermedad' },
 ];
 
 const INIT_CLIENTS = [
-  { id:1, name:'María López',    phone:'310-111-2222', email:'maria@email.com',     visits:18, total:850000,  loyalty:'gold',     lastVisit:'2025-04-15' },
-  { id:2, name:'Sofía García',   phone:'310-333-4444', email:'sofia@email.com',     visits:12, total:1200000, loyalty:'platinum', lastVisit:'2025-04-20' },
-  { id:3, name:'Patricia Ruiz',  phone:'310-555-6666', email:'patricia@email.com',  visits:5,  total:175000,  loyalty:'silver',   lastVisit:'2025-04-10' },
-  { id:4, name:'Carmen Torres',  phone:'310-777-8888', email:'carmen@email.com',    visits:8,  total:380000,  loyalty:'gold',     lastVisit:'2025-04-25' },
-  { id:5, name:'Valentina Cruz', phone:'310-999-0000', email:'valentina@email.com', visits:3,  total:120000,  loyalty:'silver',   lastVisit:'2025-04-05' },
+  { id:1, name:'María López',    phone:'310-111-2222', email:'maria@email.com',     visits:18, total:850000,  loyalty:'gold',     lastVisit:'2026-04-15' },
+  { id:2, name:'Sofía García',   phone:'310-333-4444', email:'sofia@email.com',     visits:12, total:1200000, loyalty:'platinum', lastVisit:'2026-04-20' },
+  { id:3, name:'Patricia Ruiz',  phone:'310-555-6666', email:'patricia@email.com',  visits:5,  total:175000,  loyalty:'silver',   lastVisit:'2026-04-10' },
+  { id:4, name:'Carmen Torres',  phone:'310-777-8888', email:'carmen@email.com',    visits:8,  total:380000,  loyalty:'gold',     lastVisit:'2026-04-25' },
+  { id:5, name:'Valentina Cruz', phone:'310-999-0000', email:'valentina@email.com', visits:3,  total:120000,  loyalty:'silver',   lastVisit:'2026-04-05' },
 ];
 
 const INIT_STYLISTS = [
@@ -211,7 +211,7 @@ export default function App() {
   const saveBooking = () => {
     if (!validate([['Cliente', form.client], ['Servicio', form.service], ['Hora', form.time]])) return;
     if (!editTarget) {
-      setBookings(bb => [...bb, { ...form, id: nextId(bb), date: form.date || '2025-05-01', status:'confirmed', stylist: form.stylist || 'Ana' }]);
+      setBookings(bb => [...bb, { ...form, id: nextId(bb), date: form.date || '2026-05-04', status:'confirmed', stylist: form.stylist || 'Ana' }]);
       showToast('Reserva creada — confirmación enviada por WhatsApp');
     } else {
       setBookings(bb => bb.map(x => x.id === editTarget.id ? { ...x, ...form } : x));
@@ -280,7 +280,7 @@ export default function App() {
     showToast(`${name}.csv descargado`);
   };
 
-  const todayBookings = useMemo(() => bookings.filter(b => b.date === '2025-05-01'), [bookings]);
+  const todayBookings = useMemo(() => bookings.filter(b => b.date === '2026-05-04'), [bookings]);
   const todayActive   = useMemo(() => todayBookings.filter(b => b.status !== 'cancelled'), [todayBookings]);
   const todayRevenue  = useMemo(() => todayActive.reduce((s, b) => {
     const svc = services.find(x => x.name === b.service);
@@ -358,7 +358,7 @@ export default function App() {
         <div style={{position:'absolute', right:30, top:30, fontSize:80, opacity:.18}}>✨</div>
         <div style={{position:'relative', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:20, color:'#fff'}}>
           <div>
-            <div style={{fontSize:13, fontWeight:600, opacity:.85, letterSpacing:'.5px', marginBottom:8, textTransform:'uppercase'}}>Salón Bella · Jueves 1 de Mayo</div>
+            <div style={{fontSize:13, fontWeight:600, opacity:.85, letterSpacing:'.5px', marginBottom:8, textTransform:'uppercase'}}>Salón Bella · Lunes 4 de Mayo 2026</div>
             <h1 style={{fontSize:36, fontWeight:800, margin:0, letterSpacing:'-1.2px', lineHeight:1.1}}>
               Hola, hermosa ✨
             </h1>
@@ -480,7 +480,7 @@ export default function App() {
           <button style={S.btnGhost} onClick={() => exportCSV(filteredBookings, 'reservas')}>
             <Icon.download /> Exportar
           </button>
-          <button style={S.btnPri} onClick={() => { setModal('booking'); setEditTarget(null); setForm({date:'2025-05-01', time:'10:00'}); setBookingStep(1); }}>
+          <button style={S.btnPri} onClick={() => { setModal('booking'); setEditTarget(null); setForm({date:'2026-05-04', time:'10:00'}); setBookingStep(1); }}>
             <Icon.plus /> Nueva reserva
           </button>
         </div>
@@ -543,16 +543,22 @@ export default function App() {
   );
 
   const renderCalendar = () => {
-    const FIRST_DAY_OFFSET = 4; // Mayo 2025 inicia jueves
-    const DAYS_IN_MONTH = 31;
+    const today = new Date();
+    const yr = today.getFullYear();
+    const mo = today.getMonth(); // 0-indexed
+    const FIRST_DAY_OFFSET = new Date(yr, mo, 1).getDay(); // 0=Dom, 6=Sáb
+    const DAYS_IN_MONTH   = new Date(yr, mo + 1, 0).getDate();
+    const monthName = today.toLocaleDateString('es-CO', { month: 'long' });
+    const monthLabel = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+    const monthPad = String(mo + 1).padStart(2, '0');
     return (
       <div className="fade-in">
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:24, flexWrap:'wrap', gap:14}}>
           <div>
             <h1 style={{fontSize:30, fontWeight:800, margin:0, color:C.text, letterSpacing:'-.8px'}}>Calendario</h1>
-            <div style={{fontSize:14, color:C.text2, marginTop:6}}>Mayo 2025 · vista mensual</div>
+            <div style={{fontSize:14, color:C.text2, marginTop:6}}>{monthLabel} {yr} · vista mensual</div>
           </div>
-          <button style={S.btnPri} onClick={() => { setModal('booking'); setForm({date:'2025-05-01', time:'10:00'}); setBookingStep(1); }}>
+          <button style={S.btnPri} onClick={() => { setModal('booking'); setForm({date:`${yr}-${monthPad}-${String(today.getDate()).padStart(2,'0')}`, time:'10:00'}); setBookingStep(1); }}>
             <Icon.plus /> Nueva reserva
           </button>
         </div>
@@ -566,9 +572,9 @@ export default function App() {
             ))}
             {Array.from({length: DAYS_IN_MONTH}, (_, i) => {
               const day = i + 1;
-              const dateStr = `2025-05-${String(day).padStart(2, '0')}`;
+              const dateStr = `${yr}-${monthPad}-${String(day).padStart(2, '0')}`;
               const dayBookings = bookings.filter(b => b.date === dateStr && b.status !== 'cancelled');
-              const isToday = day === 1;
+              const isToday = day === today.getDate();
               return (
                 <div
                   key={day}
@@ -926,7 +932,7 @@ export default function App() {
               <div style={{...S.glassSoft, padding:16}}>
                 <div style={{fontSize:12, color:C.text3, fontWeight:700, marginBottom:8, letterSpacing:'.4px', textTransform:'uppercase'}}>Resumen</div>
                 <div style={{fontSize:13, color:C.text2, marginBottom:4}}>Servicio: <span style={{color:C.text, fontWeight:600}}>{form.service}</span></div>
-                <div style={{fontSize:13, color:C.text2, marginBottom:4}}>Horario: <span style={{color:C.text, fontWeight:600}}>1 Mayo · {form.time}</span></div>
+                <div style={{fontSize:13, color:C.text2, marginBottom:4}}>Horario: <span style={{color:C.text, fontWeight:600}}>4 Mayo · {form.time}</span></div>
                 <div style={{fontSize:13, color:C.text2}}>Total: <span style={{color:C.accent3, fontWeight:800, fontSize:15}}>{fmt(services.find(s => s.name === form.service)?.price || 0)}</span></div>
               </div>
             </div>
